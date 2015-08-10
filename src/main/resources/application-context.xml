@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:urlshortener.properties"/>
+    </bean>
+
+    <context:component-scan base-package="net.irregularexpressions.nintex.shortener"/>
+
+    <import resource="classpath:server-core-context.xml"/>
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+
+    <jaxrs:server id="container" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="urlController"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <!--&lt;!&ndash; validates joda DateTime objects&ndash;&gt;-->
+            <!--<ref bean="dateTimeParameterHandler"/>-->
+
+            <!--<ref bean="paymentParameterHandler"/>-->
+
+            <!--<ref bean="logoParameterHandler"/>-->
+            <!--<ref bean="paymentProviderParameterHandler"/>-->
+            <!--<ref bean="restaurantParameterHandler"/>-->
+            <!--<ref bean="advertisementParameterHandler"/>-->
+            <!--<ref bean="transactionParameterHandler"/>-->
+            <!--<ref bean="creditCardPaymentParameterHandler"/>-->
+            <!--<ref bean="creditCardParameterHandler"/>-->
+            <!--<ref bean="baseStationParameterHandler"/>-->
+            <!--&lt;!&ndash; Any URL parameter that fails to parse gets this one&ndash;&gt;-->
+            <!--<ref bean="badParameterHandler"/>-->
+            <!--&lt;!&ndash; intercept all exception handling so we can control the logic&ndash;&gt;-->
+            <ref bean="dispatcherExceptionMapper"/>
+            <ref bean="jsonProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean id="dispatcherExceptionMapper"
+            class="org.bongiorno.ws.core.server.exceptions.mapping.DispatcherExceptionMapper"
+            lazy-init="true" scope="singleton">
+        <constructor-arg>
+            <set>
+                <bean class="org.bongiorno.ws.core.server.exceptions.mapping.WebServiceExceptionMapper"/>
+                <bean class="org.bongiorno.ws.core.server.exceptions.mapping.WebApplicationExceptionMapper"/>
+                <bean class="org.bongiorno.ws.core.server.exceptions.mapping.JsonProcessingExceptionMapper"/>
+                <bean class="org.bongiorno.ws.core.server.exceptions.mapping.NonexistentEntityExceptionMapper"/>
+                <bean class="net.irregularexpressions.nintex.shortener.ws.ConstraintViolationExceptionMapper"/>
+            </set>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.bongiorno.ws.core.server.exceptions.mapping.EverythingElseExceptionMapper"/>
+        </constructor-arg>
+    </bean>    
+</beans>
