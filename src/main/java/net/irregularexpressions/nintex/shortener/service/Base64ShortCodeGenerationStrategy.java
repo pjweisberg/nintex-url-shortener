@@ -1,4 +1,4 @@
-package net.irregularexpressions.nintex.shortener;
+package net.irregularexpressions.nintex.shortener.service;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;

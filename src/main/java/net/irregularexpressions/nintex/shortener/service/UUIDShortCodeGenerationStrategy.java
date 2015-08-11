@@ -1,4 +1,4 @@
-package net.irregularexpressions.nintex.shortener;
+package net.irregularexpressions.nintex.shortener.service;
 
 import java.net.URI;
 import java.util.UUID;

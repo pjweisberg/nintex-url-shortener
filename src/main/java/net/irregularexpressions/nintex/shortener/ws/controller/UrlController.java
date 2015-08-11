@@ -61,7 +61,7 @@ public class UrlController {
                               @FormParam("targetUri")
                               String targetUrl,
 
-                              @Pattern(regexp = "[A-Za-z_-]*", message = "${validatedValue} does not match \"{regexp}\"")
+                              @Pattern(regexp = "[A-Za-z0-9_-]*", message = "${validatedValue} does not match \"{regexp}\"")
                               @FormParam("requestedShortCode")
                               String code) throws URISyntaxException {
         try {

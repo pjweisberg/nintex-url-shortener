@@ -1,7 +1,7 @@
 package net.irregularexpressions.nintex.shortener.dao.dummy;
 
 import net.irregularexpressions.nintex.shortener.CodeInUseException;
-import net.irregularexpressions.nintex.shortener.ShortCodeGenerationStrategy;
+import net.irregularexpressions.nintex.shortener.service.ShortCodeGenerationStrategy;
 import net.irregularexpressions.nintex.shortener.dao.UrlDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

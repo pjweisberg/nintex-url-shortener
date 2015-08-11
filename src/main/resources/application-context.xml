@@ -4,9 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:urlshortener.properties"/>
-    </bean>
+    <context:property-placeholder system-properties-mode="OVERRIDE" location="classpath:urlshortener.properties"/>
 
     <context:component-scan base-package="net.irregularexpressions.nintex.shortener"/>
 
@@ -22,22 +20,6 @@
             <ref bean="urlController"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
-            <!--&lt;!&ndash; validates joda DateTime objects&ndash;&gt;-->
-            <!--<ref bean="dateTimeParameterHandler"/>-->
-
-            <!--<ref bean="paymentParameterHandler"/>-->
-
-            <!--<ref bean="logoParameterHandler"/>-->
-            <!--<ref bean="paymentProviderParameterHandler"/>-->
-            <!--<ref bean="restaurantParameterHandler"/>-->
-            <!--<ref bean="advertisementParameterHandler"/>-->
-            <!--<ref bean="transactionParameterHandler"/>-->
-            <!--<ref bean="creditCardPaymentParameterHandler"/>-->
-            <!--<ref bean="creditCardParameterHandler"/>-->
-            <!--<ref bean="baseStationParameterHandler"/>-->
-            <!--&lt;!&ndash; Any URL parameter that fails to parse gets this one&ndash;&gt;-->
-            <!--<ref bean="badParameterHandler"/>-->
-            <!--&lt;!&ndash; intercept all exception handling so we can control the logic&ndash;&gt;-->
             <ref bean="dispatcherExceptionMapper"/>
             <ref bean="jsonProvider"/>
         </jaxrs:providers>

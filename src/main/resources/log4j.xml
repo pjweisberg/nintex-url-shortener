@@ -12,22 +12,6 @@
         </layout>
     </appender>
 
-    <appender name="AspectProfile" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${catalina.home}/logs/method-stats.csv"/>
-        <param name="Threshold" value="TRACE"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ssZ},%m%n"/>
-        </layout>
-    </appender>
-
-    <appender name="FilterProfile" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${catalina.home}/logs/servlet-stats.csv"/>
-        <param name="Threshold" value="TRACE"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ssZ},%m%n"/>
-        </layout>
-    </appender>
-
     <appender name="FiveHundredErrors" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="${catalina.home}/logs/500-errors.log"/>
         <layout class="org.apache.log4j.PatternLayout">
@@ -70,9 +54,9 @@
         <appender-ref ref="FiveHundredErrors"/>
     </category>
 
-    <category name="httpclient.wire">
-        <priority value="ERROR"/>
-    </category>
+    <!--<category name="httpclient.wire">-->
+        <!--<priority value="ERROR"/>-->
+    <!--</category>-->
 
     <!--Unless otherwise specified, all logging goes through the root item-->
     <root>
