@@ -53,30 +53,11 @@
         <priority value="DEBUG"/>
     </category>
 
-    <category name="com.viableware.common.aspects.ProfilingLogAspect">
-        <priority value="TRACE"/>
-        <appender-ref ref="AspectProfile"/>
-    </category>
-
-    <category name="com.viableware.ws.profiling.filter">
-        <priority value="TRACE"/>
-        <appender-ref ref="FilterProfile"/>
-    </category>
-
     <category name="org.springframework.aop.framework.Cglib2AopProxy">
         <priority value="ERROR"/>
     </category>
 
     <category name="org.springframework.beans.factory.config.CustomEditorConfigurer">
-        <priority value="ERROR"/>
-    </category>
-
-    <category name="com.viableware.ws.core.server.mapping.AuthenticationExceptionMapper">
-        <priority value="DEBUG"/>
-        <appender-ref ref="Console" />
-    </category>
-
-    <category name="com.viableware.ws.core.client.RelativeRestOperations">
         <priority value="ERROR"/>
     </category>
 

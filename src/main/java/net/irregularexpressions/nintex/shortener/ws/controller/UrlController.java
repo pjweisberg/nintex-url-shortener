@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -55,7 +56,9 @@ public class UrlController {
     @POST
     public Response createNew(@Context HttpServletRequest hsr,
 
-                              @URL(message = "${validatedValue} is not a valid URL") @FormParam("targetUri")
+                              @NotNull
+                              @URL(message = "${validatedValue} is not a valid URL")
+                              @FormParam("targetUri")
                               String targetUrl,
 
                               @Pattern(regexp = "[A-Za-z_-]*", message = "${validatedValue} does not match \"{regexp}\"")
